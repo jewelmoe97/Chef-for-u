@@ -49,7 +49,7 @@ function Home() {
     <div>
     <div>
     {user ? (
-      <h1>Welcome, {user.username}!</h1>
+      <h1>Welcome, {user.username}!{user.id}</h1>
     ) : (
       <h1>Please login to continue.</h1>
     )}
@@ -164,7 +164,8 @@ function Home() {
         <div className="col-lg-4 menu-item" key={one.id} onClick={()=>console.log(one.id)}>
           <div className="glightbox"><img src={one.image_url} className="menu-img img-fluid" alt=""/></div>
           <h4>{one.title}</h4>
-          <Link to={`/item/${one.id}`}>view</Link>
+          <Link to={`/item/${one.id}`}>view</Link><br/>
+          <Link to={`/recipe/${one.id}`}>Delete</Link>
         
         </div>
  

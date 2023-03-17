@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :recipes, only: [:index, :create, :shows]
+  resources :recipes, only: [:index, :create, :shows, :destroy]
   post "/add", to: "recipes#create"
   get "/list", to: "recipes#index"
   post "/signup", to: "users#create"
@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/show/:id", to: "recipes#shows"
   post "/send", to: "comments#create"
+  get "/view" , to: "comments#index"
+  delete '/comments/:id', to: 'comments#destroy'
+  delete '/recipe/:id', to: 'recipes#destroy'
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

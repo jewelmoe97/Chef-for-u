@@ -11,7 +11,7 @@ import "../App.css";
 import { useContext } from 'react';
 import UserContext from "./UserContext";
 import ItemDetail from "../pages/EachItemList";
-
+import DeleteRecipe from "../pages/delete";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -20,7 +20,7 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
-      }
+     console.log(user) }
     });
   }, []);
 
@@ -36,7 +36,9 @@ function App() {
       <NewRecipe user={user} />
     </Route>
     <Route path="/item/:id" ><ItemDetail/></Route>
+    <Route path="/recipe/:id" ><DeleteRecipe/></Route>
     <Route exact path="/">
+    
     <Home/>
     </Route>
     

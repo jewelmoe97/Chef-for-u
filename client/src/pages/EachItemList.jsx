@@ -1,9 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import UserContext from '../components/UserContext';
+
 function ItemDetail() {
     const [recipe, setRecipe] = useState();
     const[comment, setComment] = useState();
+    const { user } = useContext(UserContext);
+
   const { id } = useParams();
   
   function handleSubmit(e) {
@@ -16,19 +21,15 @@ function ItemDetail() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id :,
+        user_id :user.id,
        recipe_id :id,
         review: comment
       
         
       }),
     }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
+     
+      console.log(r)
     });
    }
     useEffect(() => {
@@ -52,7 +53,11 @@ function ItemDetail() {
 
 return (
     <div><h1>each item view</h1>
-   
+    {user ? (
+      <h1>Welcome, {user.username}!{user.id}</h1>
+    ) : (
+      <h1>Please login to continue.</h1>
+    )}
     {recipe && <React.Fragment>  <h1>title:{recipe.title}</h1>
     
     <h2>{recipe.id}</h2>
