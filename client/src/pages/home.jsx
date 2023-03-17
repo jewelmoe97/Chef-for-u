@@ -6,6 +6,10 @@ import styled from "styled-components";
 import { Box, Button } from "../styles";
 import heroimg from "../img/heroimg.png";
 import about2 from "../img/about2.jpg";
+
+import { useContext } from 'react';
+import UserContext from '../components/UserContext';
+
 import catfish from "../img/catfish.png";
 import corncheeese from "../img/corncheeese.png";
 import salmon from "../img/salmon.png";
@@ -17,8 +21,10 @@ import ome from "../img/ome.png";
 import pasta from "../img/pasta.png"
 import gc from "../img/gc.png";
 import noodle from "../img/noodle.png";
+
 function Home() {
   const [recipes, setRecipes] = useState([]);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/list")
@@ -41,7 +47,13 @@ function Home() {
 
   return (
     <div>
-
+    <div>
+    {user ? (
+      <h1>Welcome, {user.username}!</h1>
+    ) : (
+      <h1>Please login to continue.</h1>
+    )}
+  </div>
   
 
   
@@ -49,8 +61,8 @@ function Home() {
     <div className="container">
       <div className="row justify-content-between gy-5">
         <div className="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-          <h2 data-aos="fade-up">Enjoy Your Healthy<br/>Delicious Food</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Sed autem </p>
+          <h2 data-aos="fade-up">Enjoy Your  Easy<br/>Delicious Food</h2>
+          <p data-aos="fade-up" data-aos-delay="100"> </p>
           <div className="d-flex" data-aos="fade-up" data-aos-delay="200">
            
           </div>
@@ -80,15 +92,11 @@ function Home() {
       <div className="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
         <div className="content ps-0 ps-lg-5">
           <p className="fst-italic">
-            Lorem
+          Cook everything from scratch
           </p>
-          <ul>
-            <li><i className="bi bi-check2-all"></i> Ullamco </li>
-            <li><i className="bi bi-check2-all"></i> Duis </li>
-            <li><i className="bi bi-check2-all"></i> Ullamco.</li>
-          </ul>
+          
           <p>
-            Ulla
+          Love to eat then learn to cook with our simple,easy and quick recipes.
           </p>
 
           <div className="position-relative mt-4">
@@ -149,57 +157,21 @@ function Home() {
         <h3>Starters</h3>
       </div>
 
+
       <div className="row gy-5">
-
-        <div className="col-lg-4 menu-item">
-          <a href={corncheeese} className="glightbox"><img src={corncheeese} className="menu-img img-fluid" alt=""/></a>
-          <h4>Corn Cheese</h4>
-          <p className="ingredients">
-          350g Sweet Corn
-          170g Mozzarella Cheese
-          2 Tbsp Unsalted Butter
-          3 Tbsp Mayonnaise
-          1 Tbsp Sugar 
-          </p>
-          <p className="cooking time">
-            15mins
-          </p>
+      { recipes.length > 0  &&  recipes.map((one,index)=>{
+        return(
+        <div className="col-lg-4 menu-item" key={one.id} onClick={()=>console.log(one.id)}>
+          <div className="glightbox"><img src={one.image_url} className="menu-img img-fluid" alt=""/></div>
+          <h4>{one.title}</h4>
+          <Link to={`/item/${one.id}`}>view</Link>
+        
         </div>
-
-        <div className="col-lg-4 menu-item">
-          <a href={catfish} className="glightbox"><img src={catfish} className="menu-img img-fluid" alt=""/></a>
-          <h4>Fried Cat Fish</h4>
-          <p className="ingredients">
-          Catfish fillets 
-          Oil 
-          Salt and pepper to taste
-          Cornmeal
-          </p>
-          <p className="cooking time">
-            30mins
-          </p>
-        </div>
-
-        <div className="col-lg-4 menu-item">
-          <a href={heroimg} className="glightbox"><img src={heroimg} className="menu-img img-fluid" alt=""/></a>
-          <h4>Tofu Stir Fry</h4>
-          <p className="ingredients">
-          2 (14-ounce) packages extra-firm tofu 
-          1 tablespoon canola oil 
-          3 tablespoons low-sodium soy sauce divided
-          3 large garlic cloves minced (about 1 heaping tablespoon)
-          1 small bunch green onions finely chopped, divided
-          1 tablespoon minced fresh ginger
-          1 teaspoon fresh chili paste (sambal oelek) 
-          1 plum tomato
-          2 tablespoons toasted crushed peanut
-          2 teaspoons sesame oil
-          </p>
-          <p className="cooking time">
-           20mins
-          </p>
-        </div>
-
+ 
+        )
+          })   
+          }
+      
       </div>
     </div>
 
@@ -290,7 +262,7 @@ function Home() {
           1 Bellpepper (chopped)
           1 teaspoon  Lemon Juice
           1 teaspoon Vinegar
-          1 eggplant (cut and grilled)
+          1 eggplant (cut )
           1 teaspoon Extra Virgin Olive Oil
            3 Cherry Tomatoes (cut into half)
            10 Lettuce Leaves (roughly chopped) 
@@ -312,6 +284,7 @@ function Home() {
          6 ounces  choice of meat or seafood
          2 tablespoons oil
          3 cloves of Garlic
+         half yellow or white onion 
          1 carrot chopped
          1 cup of cabbage
 
@@ -330,6 +303,7 @@ function Home() {
           2 cups water
           a few sprigs of parsley, plus more for garnishing
           6-8 whole peppercorns
+          3 tablespoons red wine
           12 cloves garlic
           2 tablespoons olive oil
            1 (14.5-ounce) can san Marzano style diced tomatoes
@@ -362,7 +336,8 @@ function Home() {
           2 tablespoons vegetable oil
           1 teaspoon Diamond Crystal kosher salt
           1/4 teaspoon freshly ground black pepper, or more to taste
-          4 lemon wedges, for serving
+          half lemon for lemon juice,  4 lemon wedges, for serving
+      
           4oz string beans 
           </p>
           <p className="cooking time">
@@ -385,7 +360,7 @@ function Home() {
           1 cup Chimichurri Sauce (optional)
           </p>
           <p className="cooking time">
-            23mins
+            25mins
           </p>
         </div>
 
@@ -401,6 +376,7 @@ function Home() {
           ½ cup Teriyaki sauce
           ½ cup Rice Vinegar
           1 teaspoon Ground Ginger
+          1 teaspoon brown sugar
           2 teaspoons Garlic (minced)
           3 tablespoons Corn Starch
           ½ teaspoon  Sesame Seeds

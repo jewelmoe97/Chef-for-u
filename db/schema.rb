@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_25_165152) do
+ActiveRecord::Schema.define(version: 2023_03_12_143120) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
+    t.text "review"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
@@ -20,6 +28,7 @@ ActiveRecord::Schema.define(version: 2023_02_25_165152) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "category"
   end
 
   create_table "users", force: :cascade do |t|

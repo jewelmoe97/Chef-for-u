@@ -8,6 +8,7 @@ function NewRecipe({ user }) {
   const [title, setTitle] = useState("My Awesome Recipe");
   const [minutesToComplete, setMinutesToComplete] = useState("30");
   const [instructions, setInstructions] = useState(`Here's how you make it.
+
   
 ## Ingredients
 
@@ -18,9 +19,13 @@ function NewRecipe({ user }) {
 
 **Mix** sugar and spice. _Bake_ for 30 minutes.
   `);
+  const [image,setImage] = useState();
+  
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const [category,setCategory] = useState('breakfast');
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -33,7 +38,9 @@ function NewRecipe({ user }) {
       body: JSON.stringify({
         title,
         instructions,
-        minutes_to_complete: minutesToComplete,
+        cooking_time: minutesToComplete,
+        image_url: image,
+        category: category
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -60,6 +67,15 @@ function NewRecipe({ user }) {
             />
           </FormField>
           <FormField>
+            <Label htmlFor="img">Image</Label>
+            <Input
+              type="text"
+              id="image"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </FormField>
+          <FormField>
             <Label htmlFor="minutesToComplete">Minutes to complete</Label>
             <Input
               type="number"
@@ -68,6 +84,25 @@ function NewRecipe({ user }) {
               onChange={(e) => setMinutesToComplete(e.target.value)}
             />
           </FormField>
+
+          <FormField>
+          
+    <Label for="category">Category </Label>
+      <select
+      required 
+        id="type"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="starters">Starters</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+       
+      </select>
+    
+  </FormField>
+
           <FormField>
             <Label htmlFor="instructions">Instructions</Label>
             <Textarea

@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label } from "../styles";
+import { useContext } from 'react';
+import UserContext from './UserContext';
+
+
+
+
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = UserContext || {}; 
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -20,6 +27,7 @@ function LoginForm({ onLogin }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
+        // setUser({ username });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

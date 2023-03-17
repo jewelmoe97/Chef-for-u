@@ -32,6 +32,7 @@ function RecipeList() {
         recipes.map((recipe) => (
           <Recipe key={recipe.id}>
             <Box>
+            <img src={recipe.image_url}/>
               <h2>{recipe.title}</h2>
               <p>
                 <em>Time to Complete: {recipe.cooking_time} minutes</em>
