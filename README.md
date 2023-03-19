@@ -1,7 +1,7 @@
 
 This is the Phase4 project for Flat Iron Software Engineering Flex Program.
 
-** Chef For U**
+## Chef For U ##
 
 Project Overview
 
@@ -17,23 +17,23 @@ A user need to sign up first and can see all the recipes.
 
 * can add and delete the recipes that the user created(authorize)
 
-*can give comment for recipes
+* can give comment for recipes
 
-*can view and delete  the comments that the user created(authorize)
+* can view and delete  the comments that the user created(authorize)
 
 ## Built With
 
-*Html
+* Html
 
-*CSS
+* CSS
 
-*Bootstrap
+* Bootstrap
 
-*Java Script
+* Java Script
 
-*React JS
+* React JS
 
-*Ruby on Rails
+* Ruby on Rails
 
 
 ## Requirements
@@ -44,19 +44,19 @@ A user need to sign up first and can see all the recipes.
 
 ## Installation
 
-*fork/clone project
+* fork/clone project
 
-*npm install
+* npm install
 
-*npm run build
+* npm run build
 
-##Usage
+## Usage
 
-*npm start to run the server
+* npm start to run the server
 
-*open in localhost:3000 in browser
+* open in localhost:3000 in browser
 
-*rails s to rn the backend server
+* rails s to rn the backend server
 
 
 
