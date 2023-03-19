@@ -56,7 +56,7 @@ A user need to sign up first and can see all the recipes.
 
 * open in localhost:3000 in browser
 
-* rails s to rn the backend server
+* rails s to run the backend server
 
 
 
