@@ -36,9 +36,9 @@ Built With
 
 
 Requirements
+*ruby  2.7.4
 
-
-
+*json server
 
 ##Installation
 
@@ -53,6 +53,10 @@ Requirements
 *npm start to run the server
 
 *open in localhost:3000 in browser
+
+*rails s to rn the backend server
+
+
 
 MIT License
 
