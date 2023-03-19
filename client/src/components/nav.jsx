@@ -36,11 +36,10 @@ function NavBar1({ user, setUser }) {
         <ul>
           
           <li><Link to="/">Home</Link></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <Button as={Link} to="/new">
-          New Recipe
-        </Button>
+          
+          
+        <li><Link to="/new">New Recipe</Link></li>
+        <li><Link to="/review">Comments</Link></li>
           <li  onClick={handleLogoutClick}>
           <a>Logout</a>
         </li>

@@ -1,6 +1,5 @@
 class RecipesController < ApplicationController
-   
-     
+  
         def index
           
           render json: Recipe.all
@@ -16,15 +15,29 @@ class RecipesController < ApplicationController
         render json: recipes
       end
 
+      # def destroy
+      #   item = Recipe.find(params[:id])
+      #   item.destroy
+      #   head :no_content
+      # end
+
       def destroy
-        item = Recipe.find(params[:id])
-        item.destroy
-        head :no_content
+        recipe = Recipe.find(params[:id])
+        if recipe.user_id == @current_user.id
+          recipe.destroy
+          render json: { message: 'Recipe deleted' }
+        else
+          render json: { error: 'You are not authorized to delete this recipe' }, status: :unauthorized
+        end
       end
+      
       
       private
     
       def recipe_params
         params.permit( :title, :instructions, :cooking_time, :image_url, :category)
       end
+
+     
+
 end

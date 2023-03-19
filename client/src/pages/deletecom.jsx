@@ -2,11 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-function DeleteRecipe (){
+function DeleteCom (){
     const history = useHistory();
     const { id } = useParams();
     useEffect(() => {
-        fetch(`/recipe/${id}`, { method: 'DELETE' })
+        fetch(`/comments/${id}`, { method: 'DELETE' })
           
         .then(response => {
           if (response.ok) {
@@ -22,7 +22,7 @@ function DeleteRecipe (){
         .catch(error => {
           // handle error response
           
-          alert("You are not authorized to delete this recipe.");
+          alert("You are not authorized to delete this comment.");
 
           history.push('/');
         });
@@ -34,7 +34,7 @@ function DeleteRecipe (){
       
     
 return (<div>
-   <h1>Delete recipe</h1> 
+   <h1>Delete Comment</h1> 
     
     
     
@@ -45,4 +45,4 @@ return (<div>
 }
 
 
-export default DeleteRecipe;
+export default DeleteCom;

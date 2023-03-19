@@ -10,19 +10,23 @@ A user need to sign up first and can see all the recipes.
 
 Features
 
+* can see each recipe
+
 * can see all recipes
 
-* can add, edit and delete the recipes that the user created
+* can add and delete the recipes that the user created(authorize)
 
 *can give comment for recipes
 
-*can edit and delete the comment
+*can view and delete  the comments that the user created(authorize)
 
 Built With
 
 *Html
 
 *CSS
+
+*Bootstrap
 
 *Java Script
 

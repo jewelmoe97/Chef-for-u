@@ -12,6 +12,8 @@ import { useContext } from 'react';
 import UserContext from "./UserContext";
 import ItemDetail from "../pages/EachItemList";
 import DeleteRecipe from "../pages/delete";
+import Review from "../pages/review";
+import DeleteCom from "../pages/deletecom";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -37,6 +39,8 @@ function App() {
     </Route>
     <Route path="/item/:id" ><ItemDetail/></Route>
     <Route path="/recipe/:id" ><DeleteRecipe/></Route>
+    <Route path="/review" ><Review/></Route>
+    <Route path="/comments/:id" ><DeleteCom/></Route>
     <Route exact path="/">
     
     <Home/>

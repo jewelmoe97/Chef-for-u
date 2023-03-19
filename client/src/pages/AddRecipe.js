@@ -53,7 +53,7 @@ function NewRecipe({ user }) {
   }
 
   return (
-    <Wrapper>
+    <Wrapper style={{marginTop:70+"px"}}>
       <WrapperChild>
         <h2>Create Recipe</h2>
         <form onSubmit={handleSubmit}>
@@ -118,9 +118,9 @@ function NewRecipe({ user }) {
             </Button>
           </FormField>
           <FormField>
-            {errors.map((err) => (
-              <Error key={err}>{err}</Error>
-            ))}
+          {errors?.map((err) => (
+            <Error key={err}>{err}</Error>
+          ))}
           </FormField>
         </form>
       </WrapperChild>

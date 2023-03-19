@@ -52,22 +52,22 @@ function ItemDetail() {
   
 
 return (
-    <div><h1>each item view</h1>
+    <div style={{marginTop:30+"px"}} className="text-center mx-auto border border-dark" ><h1>Each item view</h1>
     {user ? (
-      <h1>Welcome, {user.username}!{user.id}</h1>
+      <h1>Welcome, {user.username}!</h1>
     ) : (
       <h1>Please login to continue.</h1>
     )}
     {recipe && <React.Fragment>  <h1>title:{recipe.title}</h1>
     
-    <h2>{recipe.id}</h2>
+    
     <img src={recipe.image_url} className="menu-img img-fluid" alt=""/>
-    <h2>instructions:{recipe.instructions}</h2>
-    <h2>cooking_time:{recipe.cooking_time}</h2>
+    <h5>Instructions:{recipe.instructions}</h5>
+    <h5>Cooking_time:{recipe.cooking_time}</h5>
     <label for="message">Message:</label>
     <form onSubmit={handleSubmit}><textarea id="message" name="message" rows="5" cols="40" value={comment}  onChange={(e) => setComment(e.target.value)}></textarea>
 
-    <input type="submit" value="send"/>
+    <input type="submit" value="Send"/>
     </form>
    
     
@@ -76,10 +76,5 @@ return (
 </div>
 )
 }
-
-
-
-
-
 
 export default ItemDetail;
