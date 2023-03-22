@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :recipes, only: [:index, :create, :shows, :destroy]
+
+  # resources :users, only: [:create, :show] do
+  #   get 'recipes', on: :member
+  # end
+  
+  resources :recipes, only: [:index, :create, :shows, :destroy]  
+  # resources :comments, only: [:create, :destroy]
+  # end 
+
   post "/add", to: "recipes#create"
   get "/list", to: "recipes#index"
   post "/signup", to: "users#create"

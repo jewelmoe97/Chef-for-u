@@ -7,6 +7,8 @@ import { Box, Button } from "../styles";
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
 
+
+  
   useEffect(() => {
     fetch("/list")
     .then((res)=>{
