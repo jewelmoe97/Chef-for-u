@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
     def index
           
-        render json: Comment.all
+        # render json: Comment.all
+        comments = Comment.includes(:user, :recipe).all
+    render json: comments, include: [:user, :recipe]
       end 
           
      

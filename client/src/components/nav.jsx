@@ -26,11 +26,11 @@ function NavBar1({ user, setUser }) {
 <div id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+      <span class="logo d-flex align-items-center me-auto me-lg-0">
         
        
         <h1>Chef For U<span>.</span></h1>
-      </a>
+      </span>
 
       <nav id="navbar" class="navbar">
         <ul>

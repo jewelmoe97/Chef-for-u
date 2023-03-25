@@ -64,6 +64,7 @@ return (
     <img src={recipe.image_url} className="menu-img img-fluid" alt=""/>
     <h5>Instructions:{recipe.instructions}</h5>
     <h5>Cooking_time:{recipe.cooking_time}</h5>
+    <h5>Category:{recipe.category}</h5>
     <label for="message">Message:</label>
     <form onSubmit={handleSubmit}><textarea id="message" name="message" rows="5" cols="40" value={comment}  onChange={(e) => setComment(e.target.value)}></textarea>
 
