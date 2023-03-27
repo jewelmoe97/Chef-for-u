@@ -15,7 +15,7 @@ A user need to sign up first and can see all the recipes.
 
 * can see all recipes
 
-* can add and delete the recipes that the user created(authorize)
+* can add , edit and delete the recipes that the user created(authorize)
 
 * can give comment for recipes
 
