@@ -29,7 +29,7 @@ function Review() {
     //  }) 
     return (
 <div>
-<h1 className="text-center" style={{marginTop:100+"px"}}>Comments</h1>
+<h1 className="text-center" style={{marginTop:120+"px"}}>Comments</h1>
 {review && review.map((one, index) => {
   return (
     <div className="border border-dark p-5 mt-5 d-flex justify-content-center align-items-center mx-auto text-center flex-column" key={index}>

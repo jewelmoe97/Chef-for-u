@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #   get 'recipes', on: :member
   # end
   
-  resources :recipes, only: [:index, :create, :shows, :destroy]  
+  resources :recipes, only: [:index, :create, :shows, :destroy, :updates]  
   # resources :comments, only: [:create, :destroy]
   # end 
 
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "/show/:id", to: "recipes#shows"
   post "/send", to: "comments#create"
   get "/view" , to: "comments#index"
+ patch "/updates/:id", to: "recipes#updates"
+
   delete '/comments/:id', to: 'comments#destroy'
   delete '/recipe/:id', to: 'recipes#destroy'
 

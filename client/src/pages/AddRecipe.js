@@ -53,7 +53,7 @@ function NewRecipe({ user }) {
   }
 
   return (
-    <Wrapper style={{marginTop:70+"px"}}>
+    <Wrapper style={{marginTop:100+"px"}}>
       <WrapperChild>
         <h2>Create Recipe</h2>
         <form onSubmit={handleSubmit}>

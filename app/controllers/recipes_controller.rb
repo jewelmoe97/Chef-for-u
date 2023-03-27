@@ -20,7 +20,6 @@ class RecipesController < ApplicationController
       #   item.destroy
       #   head :no_content
       # end
-
       def destroy
         recipe = Recipe.find(params[:id])
         if recipe.user_id == @current_user.id
@@ -30,6 +29,41 @@ class RecipesController < ApplicationController
           render json: { error: 'You are not authorized to delete this recipe' }, status: :unauthorized
         end
       end
+
+      # def update
+      #   recipe = Recipe.find(params[:id])
+      #   if recipe.user_id == @current_user.id
+      #    r1 = Recipe.find(params[:id])
+      #     if r1
+      #      r1.update(recipe_params)
+      #       render json: r1
+      #     else
+      #       render json: { error: "Recipe not found" }, status: :not_found
+      #     end
+      #   else
+      #     render json: { error: 'You are not authorized to update this recipe' }, status: :unauthorized
+      #   end
+      # end
+
+      def updates
+        recipe = Recipe.find(params[:id])
+      if recipe.user_id == @current_user.id
+        r1 = Recipe.find_by(id: params[:id])
+        if r1
+          r1.update(recipe_params)
+          render json: r1
+        else
+          render json: { error: "Recipe not found" }, status: :not_found
+        end
+      else
+            render json: { error: 'You are not authorized to update this recipe' }, status: :unauthorized
+          end
+      end
+      
+      
+      
+
+     
       
       
       

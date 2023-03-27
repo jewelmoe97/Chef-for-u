@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from '../components/UserContext';
+import { Link } from 'react-router-dom';
 
 function ItemDetail() {
     const [recipe, setRecipe] = useState();
@@ -52,7 +53,7 @@ function ItemDetail() {
   
 
 return (
-    <div style={{marginTop:30+"px"}} className="text-center mx-auto border border-dark" ><h1>Each item view</h1>
+    <div style={{marginTop:120+"px"}} className="text-center mx-auto border border-dark" >
     {user ? (
       <h1>Welcome, {user.username}!</h1>
     ) : (
@@ -64,11 +65,13 @@ return (
     <img src={recipe.image_url} className="menu-img img-fluid" alt=""/>
     <h5>Instructions:{recipe.instructions}</h5>
     <h5>Cooking_time:{recipe.cooking_time}</h5>
-    <h5>Category:{recipe.category}</h5>
+    <h5>Category:{recipe.category}</h5><br/>
+    <Link to={`/updates/${recipe.id}`} className="btn btn-primary mx-1">Edit</Link><br/>
     <label for="message">Message:</label>
     <form onSubmit={handleSubmit}><textarea id="message" name="message" rows="5" cols="40" value={comment}  onChange={(e) => setComment(e.target.value)}></textarea>
 
     <input type="submit" value="Send"/>
+    <Link to="/" className="btn btn-primary">Back</Link>
     </form>
    
     

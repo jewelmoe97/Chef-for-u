@@ -14,6 +14,7 @@ import ItemDetail from "../pages/EachItemList";
 import DeleteRecipe from "../pages/delete";
 import Review from "../pages/review";
 import DeleteCom from "../pages/deletecom";
+import RecipeEdit from "../pages/recipeedit";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -41,6 +42,7 @@ function App() {
     <Route path="/recipe/:id" ><DeleteRecipe/></Route>
     <Route path="/review" ><Review/></Route>
     <Route path="/comments/:id" ><DeleteCom/></Route>
+    <Route path="/updates/:id" ><RecipeEdit/></Route>
     <Route exact path="/">
     
     <Home/>

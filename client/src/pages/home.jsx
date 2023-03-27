@@ -40,7 +40,7 @@ function Home() {
 
   return (
     <div>
-    <div style={{marginTop:100+"px"}}>
+    <div style={{marginTop:130+"px"}}>
     {user ? (
       <div className="d-flex flex-row mx-auto text-center justify-content-center align-items-center ">
       <h1>Welcome, {user.username}!</h1>
