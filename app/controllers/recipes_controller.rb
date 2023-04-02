@@ -1,9 +1,16 @@
 class RecipesController < ApplicationController
   
+        # def index
+          
+        #   render json: Recipe.all
+        # end
         def index
           
-          render json: Recipe.all
+          # render json: Recipe.all
+          recipe = Recipe.includes(:user).all
+          render json: recipe, include: [:user]
         end
+
       
       def create
         recipe = @current_user.recipes.create!(recipe_params)
@@ -70,7 +77,7 @@ class RecipesController < ApplicationController
       private
     
       def recipe_params
-        params.permit( :title, :instructions, :cooking_time, :image_url, :category)
+        params.permit( :title, :instructions, :cooking_time, :image_url, :category, :user_id)
       end
 
      

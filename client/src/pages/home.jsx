@@ -25,7 +25,7 @@ function Home() {
       })
 
       .then((result)=>{
-        console.log(result.length);
+        console.log(result);
         return setRecipes(result);
       })
 
@@ -133,6 +133,7 @@ function Home() {
         <div className="col-lg-4 menu-item" key={one.id} onClick={()=>console.log(one.id)}>
           <div className="glightbox"><img src={one.image_url} className="menu-img img-fluid" alt=""/></div>
           <h4 className="text-uppercase">{one.title}</h4>
+          <h4 className="text-uppercase">Recipe by:{one?.user?.username}</h4>
           <div className="d-flex flex-row justify-content-center align-items-center mx-auto text-center">
           <Link to={`/item/${one.id}`} className="btn btn-primary mx-1">view</Link><br/>
           <Link to={`/recipe/${one.id}`} className="btn btn-danger mx-1">Delete</Link></div>

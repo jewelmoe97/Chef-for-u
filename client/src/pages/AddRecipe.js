@@ -3,8 +3,10 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
+import { useContext } from 'react';
+import UserContext from '../components/UserContext';
 
-function NewRecipe({ user }) {
+function NewRecipe() {
   const [title, setTitle] = useState("My Awesome Recipe");
   const [minutesToComplete, setMinutesToComplete] = useState("30");
   const [instructions, setInstructions] = useState(`Here's how you make it.
@@ -25,7 +27,7 @@ function NewRecipe({ user }) {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const [category,setCategory] = useState('breakfast');
-
+  const { user } = useContext(UserContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +42,8 @@ function NewRecipe({ user }) {
         instructions,
         cooking_time: minutesToComplete,
         image_url: image,
-        category: category
+        category: category,
+        user_id: user.id
       }),
     }).then((r) => {
       setIsLoading(false);
