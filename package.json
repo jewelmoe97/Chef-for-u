@@ -11,6 +11,7 @@
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
   "dependencies": {
-    "react-markdown": "^8.0.5"
+    "react-markdown": "^8.0.5",
+    "react-router-dom": "^6.10.0"
   }
 }

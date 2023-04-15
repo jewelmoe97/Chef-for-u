@@ -2,44 +2,56 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-function DeleteRecipe (){
-    const history = useHistory();
-    const { id } = useParams();
-    useEffect(() => {
-        fetch(`/recipe/${id}`, { method: 'DELETE' })
-          
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Network response was not ok');
-          }
-        })
-        .then(data => {
-          // handle successful deletion
-          history.push('/');
-        })
-        .catch(error => {
-          // handle error response
-          
-          alert("You are not authorized to delete this recipe.");
+import { useState } from 'react';
+function DeleteRecipe() {
+  const history = useHistory();
+  const { id } = useParams();
 
-          history.push('/');
-        });
-        
-        
-        
-      }, []);
-    
-      
-    
-return (<div>
-   <h1>Delete recipe</h1> 
-    
-    
-    
-    
-    </div>)
+  function RecipeDelete() {
+    fetch(`/recipes/${id}`, { method: 'DELETE' })
+
+      .then(response => {
+        if (response.ok) {
+
+          response.json().then((sus) => {
+
+            alert(sus.message)
+          });
+
+          history.goBack();
+        } else {
+
+          response.json().then((err) => {
+
+            alert(err.errors)
+          });
+
+          history.goBack();
+        }
+      })
+
+      .catch(error => {
+        // handle error response
+
+        console.log(error);
+      });
+  }
+  useEffect(() => {
+
+
+    RecipeDelete()
+
+  }, []);
+
+
+
+  return (<div>
+    <h1>Delete recipe</h1>
+
+
+
+
+  </div>)
 
 
 }

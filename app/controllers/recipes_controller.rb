@@ -14,56 +14,55 @@ class RecipesController < ApplicationController
       
       def create
         recipe = @current_user.recipes.create!(recipe_params)
-        render json: recipe, status: :created
+        
+        render json: {
+          comment: recipe,
+          message: ['Recipe added successfully']
+          
+        },status: :created
+      
       end
 
-      def shows
+      def show
         recipes = Recipe.find(params[:id])
-        render json: recipes
+        render json: recipes, include: [:user,:comments]
       end
 
-      # def destroy
-      #   item = Recipe.find(params[:id])
-      #   item.destroy
-      #   head :no_content
-      # end
+     
       def destroy
         recipe = Recipe.find(params[:id])
         if recipe.user_id == @current_user.id
           recipe.destroy
-          render json: { message: 'Recipe deleted' }
+          
+          render json: {
+            recipe: recipe,
+            message: ['Recipe deleted']
+            
+          }
         else
-          render json: { error: 'You are not authorized to delete this recipe' }, status: :unauthorized
+          
+          render json: { errors: ['!You are not authorized to delete this recipe!' ]}, status: :unauthorized
         end
       end
 
-      # def update
-      #   recipe = Recipe.find(params[:id])
-      #   if recipe.user_id == @current_user.id
-      #    r1 = Recipe.find(params[:id])
-      #     if r1
-      #      r1.update(recipe_params)
-      #       render json: r1
-      #     else
-      #       render json: { error: "Recipe not found" }, status: :not_found
-      #     end
-      #   else
-      #     render json: { error: 'You are not authorized to update this recipe' }, status: :unauthorized
-      #   end
-      # end
-
-      def updates
+      
+      def update
         recipe = Recipe.find(params[:id])
       if recipe.user_id == @current_user.id
         r1 = Recipe.find_by(id: params[:id])
         if r1
           r1.update(recipe_params)
-          render json: r1
+          # render json: r1, status: :created
+          render json: {
+            recipe: r1,
+            message: ['Recipe updated successfully']
+            
+          },status: :created
         else
-          render json: { error: "Recipe not found" }, status: :not_found
+          render json: { errors: ["Recipe not found" ]}, status: :not_found
         end
       else
-            render json: { error: 'You are not authorized to update this recipe' }, status: :unauthorized
+            render json: { errors: ['!You are not authorized to update this recipe' ]}, status: :unauthorized
           end
       end
       

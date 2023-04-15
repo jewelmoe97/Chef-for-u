@@ -19,7 +19,7 @@ function Home() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    fetch("/list")
+    fetch("/recipes")
     .then((res)=>{
         return res.json();
       })
@@ -135,8 +135,8 @@ function Home() {
           <h4 className="text-uppercase">{one.title}</h4>
           <h4 className="text-uppercase">Recipe by:{one?.user?.username}</h4>
           <div className="d-flex flex-row justify-content-center align-items-center mx-auto text-center">
-          <Link to={`/item/${one.id}`} className="btn btn-primary mx-1">view</Link><br/>
-          <Link to={`/recipe/${one.id}`} className="btn btn-danger mx-1">Delete</Link></div>
+          <Link to={`/recipes/${one.id}`} className="btn btn-primary mx-1">view</Link><br/>
+          <Link to={`/recipes/${one.id}/delete`} className="btn btn-danger mx-1">Delete</Link></div>
         
         </div>
  

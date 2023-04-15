@@ -4,19 +4,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 function Review() {
   const [review ,setReview] = useState([])
-  
+  function Display() {
+    fetch(`/comments`)
+    .then((res) => {
+      return res.json();
+    })
+    .then((result) => {
+      console.log(result);
+      setReview(result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
   useEffect(() => {
-    fetch(`/view`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((result) => {
-        console.log(result);
-        setReview(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    Display()
   }, []);
 
  
@@ -41,7 +43,7 @@ function Review() {
       <img src={one?.recipe?.image_url} width={300+"px"} />
 <br/>
 <br/>
-      <Link to={`/comments/${one?.id}`} className="btn btn-danger mx-auto text-center">Delete</Link>
+      <Link to={`/comments/${one.id}/delete`} className="btn btn-danger mx-auto text-center">Delete</Link>
     </div>
   )   
 })}

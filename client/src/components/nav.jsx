@@ -39,7 +39,7 @@ function NavBar1({ user, setUser }) {
           
           
         <li><Link to="/new">New Recipe</Link></li>
-        <li><Link to="/review">Comments</Link></li>
+       
           <li  onClick={handleLogoutClick}>
           <a>Logout</a>
         </li>

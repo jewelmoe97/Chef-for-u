@@ -4,23 +4,51 @@ Rails.application.routes.draw do
   #   get 'recipes', on: :member
   # end
   
-  resources :recipes, only: [:index, :create, :shows, :destroy, :updates]  
+   resources :recipes  
   # resources :comments, only: [:create, :destroy]
   # end 
+resources :comments
+#   post "/recipes", to: "recipes#create"
+#   get "/recipes", to: "recipes#index"
+#   post "/signup", to: "users#create"
+#   get "/me", to: "users#show"
+#   post "/login", to: "sessions#create"
+#   delete "/logout", to: "sessions#destroy"
+#   get "/recipes/:id", to: "recipes#show"
+#   post "/comments", to: "comments#create"
+#   get "/comments" , to: "comments#index"
+#  patch "/recipes/:id", to: "recipes#update"
 
-  post "/add", to: "recipes#create"
-  get "/list", to: "recipes#index"
-  post "/signup", to: "users#create"
+#   delete '/comments/:id', to: 'comments#destroy'
+#   delete "/recipes/:id", to: 'recipes#destroy'
+  
+  get "/recipes", to: "recipes#index"
+  get "/recipes/:id", to: "recipes#show"
+  post "/recipes", to: "recipes#create"
+  patch "/recipes/:id", to: "recipes#update"
+  delete '/recipes/:id', to: 'recipes#destroy'
+ 
+
   get "/me", to: "users#show"
+  post "/signup", to: "users#create"
+  
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  get "/show/:id", to: "recipes#shows"
-  post "/send", to: "comments#create"
-  get "/view" , to: "comments#index"
- patch "/updates/:id", to: "recipes#updates"
 
+  get "/comments" , to: "comments#index"
+  post "/comments", to: "comments#create"
   delete '/comments/:id', to: 'comments#destroy'
-  delete '/recipe/:id', to: 'recipes#destroy'
+ 
+ 
+ 
+
+
+
+
+
+
+
+  
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

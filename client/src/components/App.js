@@ -15,16 +15,19 @@ import DeleteRecipe from "../pages/delete";
 import Review from "../pages/review";
 import DeleteCom from "../pages/deletecom";
 import RecipeEdit from "../pages/recipeedit";
+
 function App() {
   const [user, setUser] = useState(null);
-
+function Display() {
+  fetch("/me").then((r) => {
+    if (r.ok) {
+      r.json().then((user) => setUser(user));
+   console.log(user) }
+  });
+}
   useEffect(() => {
     // auto-login
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-     console.log(user) }
-    });
+   Display()
   }, []);
 
   if (!user) return <Login onLogin={setUser} />;
@@ -34,21 +37,24 @@ function App() {
     <NavBar1 user={user} setUser={setUser} />
     <main>
     <UserContext.Provider value={{ user, setUser }}>
-      <Switch>
+    
+    <Switch>
       <Route path="/new">
       <NewRecipe user={user} />
     </Route>
-    <Route path="/item/:id" ><ItemDetail/></Route>
-    <Route path="/recipe/:id" ><DeleteRecipe/></Route>
-    <Route path="/review" ><Review/></Route>
-    <Route path="/comments/:id" ><DeleteCom/></Route>
-    <Route path="/updates/:id" ><RecipeEdit/></Route>
+
+    <Route exact path="/recipes/:id" ><ItemDetail/></Route>
+    <Route exact path="/recipes/:id/delete" ><DeleteRecipe/></Route>
+    <Route exact path="/comments" ><Review/></Route>
+    <Route exact path="/comments/:id/delete" ><DeleteCom/></Route>
+    <Route exact path="/recipes/:id/edit"><RecipeEdit  /></Route> 
     <Route exact path="/">
     
     <Home/>
     </Route>
     
       </Switch>
+      
       </UserContext.Provider>
     </main>
       

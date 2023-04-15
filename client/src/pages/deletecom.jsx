@@ -10,21 +10,30 @@ function DeleteCom (){
           
         .then(response => {
           if (response.ok) {
-            return response.json();
+            // return response.json();
+            response.json().then((sus) => {
+
+              alert(sus.message)
+            });
+  
+            history.goBack();
           } else {
-            throw new Error('Network response was not ok');
+            // throw new Error('Network response was not ok');
+
+            response.json().then((err) => {
+
+              alert(err.errors)
+            });
+  
+            history.goBack();
+          
           }
         })
-        .then(data => {
-          // handle successful deletion
-          history.push('/');
-        })
+       
         .catch(error => {
-          // handle error response
           
-          alert("You are not authorized to delete this comment.");
-
-          history.push('/');
+          
+          console.log(error);
         });
         
         
@@ -34,7 +43,7 @@ function DeleteCom (){
       
     
 return (<div>
-   <h1>Delete Comment</h1> 
+  
     
     
     

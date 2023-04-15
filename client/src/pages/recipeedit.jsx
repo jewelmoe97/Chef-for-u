@@ -13,12 +13,19 @@ function RecipeEdit() {
   const [instructions, setInstructions] = useState();
   const [image,setImage] = useState();
   const history = useHistory();
-  
-  
+  const [errors, setErrors] = useState([]);
+  const [sus, setSus] = useState([]);
   const [category,setCategory] = useState();
+ const [showMsg, setShowMsg] = useState(true);
+  useEffect(() => {
+    if (sus.length > 0) {
+      setShowMsg(true);
+      setTimeout(() => setShowMsg(false), 2000);
+    }
+  }, [sus]);
 
     useEffect(() => {
-        fetch(`/show/${id}`)
+        fetch(`/recipes/${id}`)
         .then((res)=>{
             return res.json();
             
@@ -37,7 +44,7 @@ function RecipeEdit() {
       function handleSubmit(e) {
         e.preventDefault();
         
-       fetch(`/updates/${id}`, {
+       fetch(`/recipes/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -50,29 +57,41 @@ function RecipeEdit() {
           category: category
         }),
       })
+
+      // render json: { errors: ["Invalid username or password"] }, status: :unauthorized
       .then(response => {
         if (response.ok) {
-            history.push("/");
-        } else {
-          throw new Error('Network response was not ok');
+          // alert("Recipe updated.");
+          //   history.push("/");
+           response.json().then((sus) =>setSus(sus.message));
+        }else {
+          response.json().then((err) => setErrors(err.errors));
         }
-      }) .then(data => {
-        // handle successful deletion
-        history.push('/');
-      })
-      .catch(error => {
-        // handle error response
-        
-        alert("You are not authorized to edit this recipe.");
-
-        history.push('/');
+     
+      }).catch(error => {
+        console.log(error);
       })
       
       
     }
 
   return (
-    <div style={{marginTop:130+"px"}} className="d-flex flex-column justify-content-center align-items-center text-center mx-auto">
+    <div style={{marginTop:130+"px"}} className="container-fluid d-flex flex-column justify-content-center align-items-center text-center mx-auto">
+    {errors.length > 0 && (
+      <div>
+        {errors.map(error => (
+          <h5 className="text-center text-danger fw-bold p-2 bg-warning rounded">{error}</h5>
+        ))}
+      </div>
+    )}
+
+    {showMsg && sus.length > 0 && (
+      <div>
+        {sus.map(sus1 => (
+          <h5 className="text-center text-white fw-bold p-2 bg-success rounded">{sus1}</h5>
+        ))}
+      </div>
+    )}
     
     {recipe && <React.Fragment>  
     <img src={recipe.image_url} className="menu-img img-fluid" alt=""/>
@@ -110,7 +129,8 @@ function RecipeEdit() {
        
       </select><br/><br/>
 
-    <input type="submit" value="Edit"/>
+    <input type="submit" value="Edit" /><br/>
+    <br/>
     <Link to="/" className="btn btn-primary">Back</Link>
     
     

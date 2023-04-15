@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 import { useContext } from 'react';
 import UserContext from '../components/UserContext';
-
+import { useEffect } from "react";
 function NewRecipe() {
   const [title, setTitle] = useState("My Awesome Recipe");
   const [minutesToComplete, setMinutesToComplete] = useState("30");
@@ -28,6 +28,15 @@ function NewRecipe() {
   const history = useHistory();
   const [category,setCategory] = useState('breakfast');
   const { user } = useContext(UserContext);
+  const [sus, setSus] = useState([]);
+
+  const [showMsg, setShowMsg] = useState(true);
+  useEffect(() => {
+    if (sus.length > 0) {
+      setShowMsg(true);
+      setTimeout(() => setShowMsg(false), 3000);
+    }
+  }, [sus]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -48,7 +57,9 @@ function NewRecipe() {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        history.push("/");
+        // console.log("work");
+        r.json().then((sus) =>setSus(sus.message));
+        // history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -59,6 +70,14 @@ function NewRecipe() {
     <Wrapper style={{marginTop:100+"px"}}>
       <WrapperChild>
         <h2>Create Recipe</h2>
+
+        {showMsg && sus.length > 0 && (
+          <div>
+            {sus.map(sus1 => (
+              <h5 className="text-center text-white fw-bold p-2 bg-success rounded">{sus1}</h5>
+            ))}
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <FormField>
             <Label htmlFor="title">Title</Label>
@@ -70,6 +89,9 @@ function NewRecipe() {
             />
           </FormField>
           <FormField>
+
+         
+
             <Label htmlFor="img">Image</Label>
             <Input
               type="text"
