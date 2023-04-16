@@ -54,7 +54,7 @@ A user need to sign up first and can see all the recipes.
 
 * npm start to run the server
 
-* open in localhost:3000 in browser
+* open in localhost:4000 in browser
 
 * rails s to run the backend server
 
