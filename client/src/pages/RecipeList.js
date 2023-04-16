@@ -48,7 +48,7 @@ function RecipeList() {
       ) : (
         <>
           <h2>No Recipes Found</h2>
-          <Button as={Link} to="/new">
+          <Button as={Link} to="/recipes/new">
             Make a New Recipe
           </Button>
         </>

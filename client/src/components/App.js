@@ -39,7 +39,7 @@ function Display() {
     <UserContext.Provider value={{ user, setUser }}>
     
     <Switch>
-      <Route path="/new">
+      <Route exact path="/recipes/new">
       <NewRecipe user={user} />
     </Route>
 

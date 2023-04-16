@@ -18,7 +18,7 @@ function NavBar({ user, setUser }) {
         <Link to="/">Chef For U</Link>
       </Logo>
       <Nav>
-        <Button as={Link} to="/new">
+        <Button as={Link} to="/recipes/new">
           New Recipe
         </Button>
         <Button variant="outline" onClick={handleLogoutClick}>
