@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 // import NavBar from "./NavBar1";
 import Login from "../pages/Login";
 import NavBar1 from "./nav.jsx";
-import RecipeList from "../pages/RecipeList";
+// import RecipeList from "../pages/RecipeList";
 import Home from "../pages/home.jsx";
 import NewRecipe from "../pages/AddRecipe";
 import "../App.css";
@@ -12,7 +12,7 @@ import { useContext } from 'react';
 import UserContext from "./UserContext";
 import ItemDetail from "../pages/EachItemList";
 import DeleteRecipe from "../pages/delete";
-import Review from "../pages/review";
+// import Review from "../pages/review";
 import DeleteCom from "../pages/deletecom";
 import RecipeEdit from "../pages/recipeedit";
 
@@ -45,7 +45,7 @@ function Display() {
 
     <Route exact path="/recipes/:id" ><ItemDetail/></Route>
     <Route exact path="/recipes/:id/delete" ><DeleteRecipe/></Route>
-    <Route exact path="/comments" ><Review/></Route>
+   
     <Route exact path="/comments/:id/delete" ><DeleteCom/></Route>
     <Route exact path="/recipes/:id/edit"><RecipeEdit  /></Route> 
     <Route exact path="/">
