@@ -4,8 +4,31 @@ class RecipesController < ApplicationController
           
         #   render json: Recipe.all
         # end
-        def index
+# @recipes = Recipe.where("title  ?", "%#{term}%")
+       # Filter results to include only recipes with "chicken" in the title
+          # @recipes = @recipes.select { |recipe| recipe.title.downcase.include?("chicken") }
+
+        # def  self.search
+        #   term = params[:term]
           
+        #    Recipe.all.select{|recipe| recipe.title.include?(term)}
+          
+        # end
+
+def time
+  
+
+  recipes=Recipe.order(cooking_time: :asc).limit(5)
+render json: recipes
+end
+       
+
+
+
+
+
+        def index
+        
           # render json: Recipe.all
           recipe = Recipe.includes(:user).all
           render json: recipe, include: [:user]
@@ -76,7 +99,7 @@ class RecipesController < ApplicationController
       private
     
       def recipe_params
-        params.permit( :title, :instructions, :cooking_time, :image_url, :category, :user_id)
+        params.permit( :title, :instructions, :cooking_time, :image_url, :category, :user_id, :term)
       end
 
      

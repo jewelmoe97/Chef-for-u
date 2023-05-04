@@ -12,7 +12,7 @@ import UserContext from '../components/UserContext';
 
 
 import skirtsteak from "../img/skirtsteak.png";
-
+import Time from "./time";
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -146,7 +146,7 @@ function Home() {
       
       </div>
     </div>
-
+<Time/>
     <div className="tab-pane fade" id="menu-breakfast">
 
       <div className="tab-header text-center">

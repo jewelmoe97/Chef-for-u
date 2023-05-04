@@ -40,11 +40,9 @@ resources :comments
   delete '/comments/:id', to: 'comments#destroy'
  
  
- 
+#  get'/search/:term', to:'recipes#search'
 
-
-
-
+get '/time', to: 'recipes#time'
 
 
 
@@ -52,5 +50,7 @@ resources :comments
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
+
+
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

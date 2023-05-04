@@ -39,6 +39,8 @@ function NavBar1({ user, setUser }) {
           
           
         <li><Link to="/recipes/new">New Recipe</Link></li>
+
+        
        
           <li  onClick={handleLogoutClick}>
           <a>Logout</a>

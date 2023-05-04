@@ -12,4 +12,8 @@ class Recipe < ApplicationRecord
 
    
 
+
+
+
+
 end
